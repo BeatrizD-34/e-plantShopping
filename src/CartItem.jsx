@@ -19,7 +19,8 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleContinueShopping = (e) => {
-    onContinueShopping();
+    handleContinueShopping();
+  };
    
   return (
     <div>
@@ -29,20 +30,20 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleIncrement = (item) => {
-    dispatch(incrementQuantity(item));
+    dispatch(updateQuantity({ ...item, quantity: item.quantity + 1}));
   };
 
   const handleDecrement = (item) => {
-    dispatch(decrementQuantity(item));
+    if (item.quantity > 1 ){
+    dispatch(updateQuantity({ ...item, quantity: item.quantity - 1}));
    
   };
 
   const handleRemove = (item) => {
     if (plantItems[item].quantity > 0) {
-        dispatch(removeItem(item));
+        dispatch(removeItem(item.id));
     }
   };
-
   const handleCheckoutShopping = (e) => {
     alert('Functionality to be added fo future refrence');
   };
